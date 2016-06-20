@@ -7,11 +7,34 @@ const rm = require('rimraf');
 const mkdir = require('mkdirp');
 const jade = require('pug');
 const parseArgs = require('minimist');
+const watchify = require('watchify');
+const errorify = require('errorify');
+const eslintify = require('eslintify');
+const babelify = require('babelify');
 
 const FB = require('./firebase.json');
 const SRC = 'src';
 const DEST = FB.hosting.public;
 const ARGS = parseArgs(process.argv.slice(2));
+
+const B = browserify(
+  path.join(SRC, 'main.js'),
+  ARGS.dev ? {
+    cache: {},
+    packageCache: {},
+    plugin: [
+      watchify,
+      errorify
+    ]
+  } : {}
+)
+  .transform(babelify, {presets: ['es2015']})
+  .transform(eslintify);
+
+function bundle() {
+  B.bundle()
+    .pipe(fs.createWriteStream(path.join(DEST, 'index.js')));
+}
 
 /** clear old build products */
 rm(path.join(__dirname, DEST), function () {
@@ -22,16 +45,16 @@ rm(path.join(__dirname, DEST), function () {
       path.join(DEST, 'index.html'), 
       jade.renderFile(path.join(SRC, 'main.jade'), {
         cache: false,
-        pretty: !ARGS.minify
+        pretty: ARGS.dev
       })
     ); 
     
     /** bundle the index.js file */
-    browserify()
-      .add(path.join(SRC, 'main.js'))
-      .bundle()
-      .pipe(fs.createWriteStream(path.join(DEST, 'index.js')));
+    bundle();
+    if(ARGS.dev) B.on('update', bundle);
       
   })
 });
+
+
 

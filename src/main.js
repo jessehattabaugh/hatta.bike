@@ -1,2 +1,2 @@
 const path = require('path');
-console.log(path.join('hello', 'world'));
+console.log(path.join('hello', 'world', 'foo'));
