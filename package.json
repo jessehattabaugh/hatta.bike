@@ -4,7 +4,8 @@
   "description": "hatta.bike",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "firebase deploy"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/jessehattabaugh/hatta.bike/issues"
   },
-  "homepage": "https://github.com/jessehattabaugh/hatta.bike#readme"
+  "homepage": "https://github.com/jessehattabaugh/hatta.bike#readme",
+  "devDependencies": {
+    "firebase-tools": "^3.0.2"
+  }
 }
