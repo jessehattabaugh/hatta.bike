@@ -1,0 +1,19 @@
+{
+  "name": "hattabike",
+  "version": "0.0.0",
+  "description": "hatta.bike",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessehattabaugh/hatta.bike.git"
+  },
+  "author": "Jesse Hattabaugh<jesse@hatta.bike>",
+  "license": "Artistic-2.0",
+  "bugs": {
+    "url": "https://github.com/jessehattabaugh/hatta.bike/issues"
+  },
+  "homepage": "https://github.com/jessehattabaugh/hatta.bike#readme"
+}
