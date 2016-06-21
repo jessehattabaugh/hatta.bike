@@ -12,9 +12,8 @@ const errorify = require('errorify');
 const eslintify = require('eslintify');
 const babelify = require('babelify');
 
-const FB = require('./firebase.json');
 const SRC = 'src';
-const DEST = FB.hosting.public;
+const DEST = 'public';
 const ARGS = parseArgs(process.argv.slice(2));
 
 const B = browserify(
