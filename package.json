@@ -8,7 +8,8 @@
     "prestart": "node ./ --watch &",
     "start": "static 'public' -a $IP -p $PORT",
     "predeploy": "node ./",
-    "deploy": "surge public hatta.bike"
+    "deploy": "surge public hatta.bike",
+    "reset": "killall -9 npm; killall -9 node;"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "browserify": "^13.0.1",
     "errorify": "^0.3.1",
     "eslintify": "^2.1.0",
+    "minifyify": "^7.3.3",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "node-static": "^0.7.7",
