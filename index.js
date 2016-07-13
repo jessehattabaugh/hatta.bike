@@ -37,11 +37,6 @@ const bundler = browserify(path.join(SRC, 'main.js'), config)
   })
   .transform(eslintify);
 
-function bundle() {
-  bundler.bundle()
-    .pipe(fs.createWriteStream(path.join(DEST, 'index.js')));
-}
-
 /** clear old build products */
 rm(path.join(__dirname, DEST), function() {
   mkdir(path.join(__dirname, DEST), function() {
@@ -60,6 +55,11 @@ rm(path.join(__dirname, DEST), function() {
 
     /** rebundle if source changes */
     if (ARGS.watch) bundler.on('update', bundle);
+    
+    function bundle() {
+      bundler.bundle()
+        .pipe(fs.createWriteStream(path.join(DEST, 'index.js')));
+    }
 
   })
 });
